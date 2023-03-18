@@ -9,17 +9,30 @@ public class PronósticosDeportivos {
 
 	public static void main(String[] args) {
 		
+		Escritura escritura = new Escritura();
+		escritura.escribir();
+		
+		int puntaje = 0;
+		String resultado1 = "0";
+		String resultado2 = "0";
+		String prono1="";
+		String prono2="";
+		String resp1="";
+		String resp2="";
+		String resp3="";
+		String combina="";
 		Lectura archivo = new Lectura();
 		
 		System.out.println(" ---- PRONOSTICOS ---- ");
 		String[] archi= archivo.leerPronosticos();
 		String[] letraSeparada;
-		
+		int i = 0;
 		String equipo1 = null, equipo2 = null;
 		String tipoPronostico1 = "", tipoPronostico2 = "";
-		for(String palabras : archi) {
-			//System.out.println(palabras);
+		for(String palabras : archi) { //Leemos las lineas
+			
 			int indice = 0;
+			
 			letraSeparada= palabras.split(";"); //Separamos las palabras 
 			
 			for(String coso : letraSeparada) {
@@ -49,13 +62,27 @@ public class PronósticosDeportivos {
 			
 				indice++;
 				
+				
 			}			
 			System.out.println("Equipo1 : " +equipo1 + " → " + tipoPronostico1);
 			System.out.println("Equipo2 : " +equipo2 + " → " + tipoPronostico2);
-			
+			if(i==0) {
+				prono1=tipoPronostico1+tipoPronostico2;
+				System.out.println("prono1: "+prono1);
+				
+				i++;
+			}else if(i==1) {
+				prono2=tipoPronostico1+tipoPronostico2;
+				
+				System.out.println("prono2: "+prono2);
+				i++;
+			}
+			//System.out.println(prono1);
 			System.out.println();
 			
+			
 		}
+		
 //		----------------------------------------------------------------------------------------------------------
 		System.out.println("----  RESULTADOS  ----");
 		
@@ -65,18 +92,17 @@ public class PronósticosDeportivos {
 		equipo2 = "";
 		
 		for(String palabras : archi) {
-			//System.out.println(palabras);
+			
 			int indice = 0;
 			letraSeparada= palabras.split(";"); //Separamos las palabras 
-			String resultado1 = "0";
-			String resultado2 = "0";
+			
 			for(String coso : letraSeparada) {
 				
 				switch (indice) {//Asignamos valores a las variables
 					case 0:
 						equipo1=coso;
 					case 1:						
-						resultado1= coso;													
+						resultado1= coso;						
 					case 2:					
 						resultado2= coso;						
 					case 3:
@@ -87,32 +113,56 @@ public class PronósticosDeportivos {
 			}
 			int resul1 = Integer.parseInt(resultado1);
 			int resul2 = Integer.parseInt(resultado2);
+			
 			System.out.println("Equipo1 : " + equipo1 + " → "+ resul1);
 			System.out.println("Equipo2 : " + equipo2 + " → "+ resul2);
 			
 			if(resul1>resul2) {
 				resultado1 = "GANA";
 				resultado2 = "PIERDE";
-				System.out.println(resultado1 +" "+ equipo1);
-				System.out.println(resultado2 +" " +equipo2);
+				System.out.println(equipo1+" "+resultado1);
+				System.out.println(equipo2+" "+resultado2);
+				resp1=resultado1+resultado2;
+								
+				
 			}else if(resul1<resul2) {
-				resultado2="GANA";
-				resultado1 = "PIERDE";
-				System.out.println(resultado1 +" "+ equipo1);
-				System.out.println(resultado2 +" "+ equipo2);
+				resultado1="PIERDE";
+				resultado2 = "GANA";
+				System.out.println(equipo1+" "+resultado1);
+				System.out.println(equipo2+" "+resultado2);
+				resp2=resultado1+resultado2;
+				
 			}else {
 				resultado1 = "EMPATA";
 				resultado2 = "EMPATA";
-				System.out.println(resultado1 +" "+ equipo1);
-				System.out.println(resultado2 +" "+ equipo2);
-			}										
-			System.out.println();			
-		}	
+				System.out.println(equipo1+" "+resultado1);
+				System.out.println(equipo2+" "+resultado2);
+				resp3=resultado1+resultado2;				
 				
-		/*Escritura escritura = new Escritura();
-		escritura.escribir();
-		*/
-	}	
+			}	
+			if(resp1=="") {//Descartamos el resultado vacío
+				resp1=resp2;
+				resp2=resp3;
+			}else if(resp2=="") {
+				resp2=resp3;
+				resp3="";
+			}
+			// Comparamos los Resultados con los Pronosticos para asignar puntaje
+			if(prono1.equals(resp1)) {
+				puntaje++;						
+			}else if(prono2.equals(resp2)) {
+				puntaje++;
+			}
+			
+			System.out.println("");
+			
+		}
+				
+		System.out.println("----  PUNTAJE ------");	
+		System.out.println("puntos: "+puntaje+ " acierto");
+		
+	}		
+		
 }
 
 
