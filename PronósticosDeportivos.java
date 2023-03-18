@@ -11,7 +11,7 @@ public class PronósticosDeportivos {
 		
 		Lectura archivo = new Lectura();
 		
-		System.out.println(" -- PRONOSTICOS -- ");
+		System.out.println(" ---- PRONOSTICOS ---- ");
 		String[] archi= archivo.leerPronosticos();
 		String[] letraSeparada;
 		
@@ -29,19 +29,19 @@ public class PronósticosDeportivos {
 						equipo1=coso;
 					case 1:
 						if(coso.contains("1") && indice==1) {
-							tipoPronostico1= "gana";
-							tipoPronostico2= "pierde";
+							tipoPronostico1 = "GANA";
+							tipoPronostico2 = "PIERDE";
 						}
 					case 2:
 						if(coso.contains("1") && indice==2) {
-							tipoPronostico1= "empata";
-							tipoPronostico2= "empata";
+							tipoPronostico1 = "EMPATA";
+							tipoPronostico2 = "EMPATA";
 							}
 					case 3:
 						
 						if(coso.contains("1") && indice==3) {
-							tipoPronostico1="pierde";
-							tipoPronostico2="gana";
+							tipoPronostico1 = "PIERDE";
+							tipoPronostico2 = "GANA";
 							}
 					case 4:
 						equipo2=coso;
@@ -49,8 +49,7 @@ public class PronósticosDeportivos {
 			
 				indice++;
 				
-			}
-			
+			}			
 			System.out.println("Equipo1 : " +equipo1 + " → " + tipoPronostico1);
 			System.out.println("Equipo2 : " +equipo2 + " → " + tipoPronostico2);
 			
@@ -58,44 +57,58 @@ public class PronósticosDeportivos {
 			
 		}
 //		----------------------------------------------------------------------------------------------------------
-		System.out.println("---  RESULTADOS  ---");
+		System.out.println("----  RESULTADOS  ----");
 		
 		archi= archivo.leerResultados();
-		letraSeparada=null;
+		letraSeparada=null;		
+		equipo1 = "";
+		equipo2 = "";
 		
-		equipo1 = null;
-		equipo2 = null;
-		String tipoResultado1 = "";
-		String tipoResultado2 = "";
 		for(String palabras : archi) {
 			//System.out.println(palabras);
 			int indice = 0;
 			letraSeparada= palabras.split(";"); //Separamos las palabras 
-			
+			String resultado1 = "0";
+			String resultado2 = "0";
 			for(String coso : letraSeparada) {
 				
 				switch (indice) {//Asignamos valores a las variables
 					case 0:
 						equipo1=coso;
 					case 1:						
-						tipoResultado1= coso;													
+						resultado1= coso;													
 					case 2:					
-						tipoResultado2= coso;					
+						resultado2= coso;						
 					case 3:
 						equipo2=coso;
 				}			
-				indice++;				
+				indice++;		
+			
 			}
+			int resul1 = Integer.parseInt(resultado1);
+			int resul2 = Integer.parseInt(resultado2);
+			System.out.println("Equipo1 : " + equipo1 + " → "+ resul1);
+			System.out.println("Equipo2 : " + equipo2 + " → "+ resul2);
 			
-			System.out.println("Equipo1 : " +equipo1 + " → " + tipoResultado1);
-			System.out.println("Equipo2 : " +equipo2 + " → " + tipoResultado2);
-			
-			System.out.println();
-			
-		}
-		
-		
-		
+			if(resul1>resul2) {
+				resultado1 = "GANA";
+				resultado2 = "PIERDE";
+				System.out.println(resultado1 +" "+ equipo1);
+				System.out.println(resultado2 +" " +equipo2);
+			}else if(resul1<resul2) {
+				resultado2="GANA";
+				resultado1 = "PIERDE";
+				System.out.println(resultado1 +" "+ equipo1);
+				System.out.println(resultado2 +" "+ equipo2);
+			}else {
+				resultado1 = "EMPATA";
+				resultado2 = "EMPATA";
+				System.out.println(resultado1 +" "+ equipo1);
+				System.out.println(resultado2 +" "+ equipo2);
+			}										
+			System.out.println();			
+		}	
+				
 		/*Escritura escritura = new Escritura();
 		escritura.escribir();
 		*/
