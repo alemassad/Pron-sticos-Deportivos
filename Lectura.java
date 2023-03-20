@@ -14,9 +14,7 @@ class Lectura {
 	String prono2="";
 	String resp1="";
 	String resp2="";
-	String resp3="";
-	
-	
+	String resp3="";	
 	String[] letraSeparada;
 	int i = 0;
 	String equipo1 = null, equipo2 = null;
@@ -52,13 +50,13 @@ class Lectura {
 				e.printStackTrace();
 			}
 		}
-		//return pronosticos;	
-	
 		
+		int parti = 1;		
 		for(String palabras : pronosticos) { // Ciclo donde leemos las lineas
-			
+			System.out.println();		
 			int indice = 0;
-			
+			System.out.println("☺ PARTIDO "+parti);
+			parti++;
 			letraSeparada= palabras.split(";"); // Separamos las palabras 
 			
 			for(String coso : letraSeparada) {// Cliclo donde leemos las palabras
@@ -100,11 +98,8 @@ class Lectura {
 				
 				//System.out.println("pronostico 2: "+prono2);
 				i++;
-			}
-			
-			System.out.println();
-			
-			
+			}		
+						
 		}
 	}
 	
@@ -138,16 +133,17 @@ class Lectura {
 				e.printStackTrace();
 			}
 		}
-		//return pronosticos;		
 		
-		//archi=archivo.leerResultados();
 		letraSeparada=null;		
 		equipo1 = "";
 		equipo2 = "";
-		
+		int index=1;
 		for(String palabras : pronosticos) {
-			
+			System.out.println();
 			int indice = 0;
+			System.out.println("☺ PARTIDO "+index);	
+			index++;
+			
 			letraSeparada= palabras.split(";"); // Separamos las palabras 
 			
 			for(String coso : letraSeparada) {
@@ -162,9 +158,10 @@ class Lectura {
 					case 3:
 						equipo2=coso;
 				}			
-				indice++;		
-			
+						
+				indice++;
 			}
+			
 			int resul1 = Integer.parseInt(resultado1); // Pasamos los resultados a Enteros
 			int resul2 = Integer.parseInt(resultado2); // para despues poder compararlos
 			
@@ -207,14 +204,15 @@ class Lectura {
 				puntaje++;						
 			}else if(prono2.equals(resp2)) {
 				puntaje++;
-			}
-			
-			System.out.println("");			
+			}			
+					
 		}
 
 	}
 	
 	public void leerPuntaje() {
+		
+		System.out.println();	
 		
 		if(puntaje == 1 || puntaje == 0) {// Verificamos si el resultado es plural o singular para mostrarlo
 			System.out.println("Acierto : "+puntaje+ " punto");

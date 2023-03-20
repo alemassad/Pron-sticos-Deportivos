@@ -26,7 +26,7 @@ class Escritura{
 		String partido ="Argentina;1;2;Arabia Saudita \nPolonia;1;1;Mexico";// Escribimos los resultados
 		
 		try {
-			FileWriter archivo = new FileWriter("C:\\Users\\pingo\\eclipse-workspace\\ArgentinaPrograma\\src\\pronósticosDeportivos\\resultado.csv");
+			FileWriter archivo = new FileWriter("C:\\Users\\pingo\\eclipse-workspace\\ArgentinaPrograma\\src\\pronósticosDeportivos\\resultadoS.csv");
 			
 			for(int i=0; i< partido.length(); i++) {
 				archivo.write(partido.charAt(i));
