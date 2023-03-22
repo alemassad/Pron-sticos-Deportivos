@@ -9,6 +9,7 @@ Dominguez, Alejandro;
 Vazquez, Daniela Andrea;
 Ledesma, Cecilia;
 Massad, Luis Alejandro;
+Montenegro; Oscar
 ******
 Para esta entrega 1
 Se desarrolló un programa que lee un archivo de
